@@ -28,44 +28,113 @@ function getRoundResult(playerSelection, computerSelection){
     return "Tie";
 }
 
+function updateResult(str){
+    const result = document.querySelector('p.result');
+    result.textContent = str;
+}
+
+function updateScore(winner){
+    if(winner === ""){
+        return;
+    }
+    let score;
+    if(winner === "player"){
+        score = document.querySelector(`p.human-score`);
+    }
+    else{
+        score = document.querySelector('p.ai-score')
+    }
+    
+    let tmp = parseInt(score.textContent);
+    ++tmp;
+    score.textContent = tmp.toString(); 
+}
+
+function resetScores(){
+    const scores = document.querySelectorAll(`.result-container p`);
+    scores.forEach((score) => {
+        score.textContent = `0`;
+    });
+}
+
+function checkForWin(){
+    const human = document.querySelector(`p.human-score`);
+    const comp = document.querySelector(`p.ai-score`);
+
+    let humanScore = parseInt(human.textContent);
+    let compScore = parseInt(comp.textContent);
+
+    let winner = "";
+    if(humanScore === 5){
+        winner = "Player";
+    }
+    else if (compScore === 5){
+        winner = "AI";
+    }
+    else{
+        return;
+    }
+    let str = `Game Ended The Winner Is ${winner}!`;
+    const container = document.querySelector(`p.result`);
+    container.textContent = str;
+    resetScores();
+}
+
+
 function playRound(playerSelection, computerSelection){
+    let str = "";
     let res = getRoundResult(playerSelection, computerSelection);
+    let winner = "";
     if(res === "Winner"){
-        return `You Wan! ${playerSelection} beats ${computerSelection}`;
+        str = `You Wan! ${playerSelection} beats ${computerSelection}`;
+        winner = "player";
     }
     else if(res === "Loser"){
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        str = `You Lose! ${computerSelection} beats ${playerSelection}`;
+        winner = "computer";
     }
     else if(res === 'Tie'){
-        return `It\'s a Tie! you both chose ${playerSelection}`;
+        str = `It\'s a Tie! you both chose ${playerSelection}`;
     }
+    updateResult(str);
+    updateScore(winner);
+    checkForWin();
 }
 
-function caseSensetiveInput(str){
-    str.toLowerCase();
-    let res = str.substring(0,1).toUpperCase();
-    res += str.substring(1);
-    return res;
+function showComputerChoice(computerSelection){
+    const imges = document.querySelectorAll(`.button`);
+    imges.forEach((img) => {
+        img.classList.remove('computer-choice');
+        if(img.id === computerSelection){
+            img.classList.add('computer-choice');
+        }
+    });
 }
 
-function checkIfInputLegal(str){
-    if(str !== "Rock" && str !== "Scissors" && str !== "Paper"){
-        return false;
-    }
-    return true;
+function showPlayerChoice(playerSelection){
+    const imges = document.querySelectorAll(`.button`);
+    imges.forEach((img) => {
+        img.classList.remove('player-choice');
+        if(img.id === playerSelection){
+            img.classList.add('player-choice');
+        }
+    });
+}
+
+function playerSelectionParse(e){
+    
+    let computerSelection = getComputerChoice();
+    showComputerChoice(computerSelection);
+    let playerSelection = this.id;
+    showPlayerChoice(playerSelection);
+    playRound(playerSelection, computerSelection);
 }
 
 function game(){
-    for(let i = 0 ; i < 1 ; ++i){
-        let playerSelection = prompt(`Your choice: `);
-        playerSelection = caseSensetiveInput(playerSelection);
-        if(!checkIfInputLegal(playerSelection)){
-            --i;
-            continue;
-        }
-        let computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-    }
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach((button) => {
+            button.addEventListener('click', playerSelectionParse);
+        });
 }
 
 game();

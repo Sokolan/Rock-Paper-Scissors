@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header{
+    text-align: center;
+    margin-top: 0;
+    background-color: rgb(44, 204, 151);
+    color: rgb(255, 255, 255);
+}
+
+.colors {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.instructions{
+    text-align: center;
+    font-weight: 600;
+    margin-top: 0;
+    background-color: rgb(108, 235, 192);
+    color: rgb(255, 255, 255);
+}
+
+.moves{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.score-header {
+    text-align: center;
+    background-color: rgb(211, 179, 0);
+    color: rgb(255, 255, 255);
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+
+.result-container > p {
+    text-align: center;
+    background-color: gold;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+p.result {
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    font-weight: 700;
+    color: gold;
+}
+
+img {
+    transition: all .09s ease;
+    border: 1px solid grey;
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+}
+
+.computer-choice {
+    transform: scale(1.1);
+    border: 2px solid #eb0000;
+}
+
+.player-choice{
+    transform: scale(1.1);
+    border: 2px solid #00ff00;
+}
+
+.player-color {
+    color: #00ff00;
+}
+
+.computer-choice.player-choice {
+    transform: scale(1.1);
+    border: 2px solid gold;
+}
+
+.comp-color {
+    color: #eb0000;
+}
+
+.tie-color {
+    color: gold;
+}
+
+.footer {
+    text-align: center;
+    font-size: 10px;
+    background-color: grey;
+    margin-bottom: 0;
+    color: aliceblue;
+    font-weight: 800;
+}

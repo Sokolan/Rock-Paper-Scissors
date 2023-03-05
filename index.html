@@ -5,9 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="javascript.js"></script>
+    <script src="javascript.js" defer></script>
+    <link rel="stylesheet" href="./style.css"></style>
 </head>
 <body>
-    
+    <div class="header">
+        <h1>Rock Paper Scissors</h1>
+    </div>
+    <div class="body">
+        <p class="instructions">Choose your move</p>
+        <div class="colors">
+            <p class="player-color">Player</p>
+            <p class="comp-color">AI</p>
+            <p class="tie-color">Tie</p>
+        </div>
+        <div class="moves">
+            <img id="Rock" src="./img/rock.png" class="button">
+            <img id="Paper" src="./img/paper.png" class="button">
+            <img id="Scissors" src="./img/scissors.png" class="button">
+        </div>
+        <p class="result">.</p>
+        <h4 class="score-header">First to reach 5 points WiNs</h4>
+        <div class="score">
+            <div class="result-container">
+                <img src="./img/user.png">
+                <p class="human-score">0</p>
+            </div>
+            <div class="result-container">
+                <img src="./img/ai.png">
+                <p class="ai-score">0</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">Valery Sokolan</div>
 </body>
 </html>
